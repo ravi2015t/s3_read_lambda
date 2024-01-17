@@ -13,7 +13,7 @@ async fn function_handler(event: Request) -> Result<Response<Body>, Error> {
     let config = aws_config::load_defaults(BehaviorVersion::latest()).await;
     let s3_client = aws_sdk_s3::Client::new(&config);
 
-    let mut file = File::create("result.parquet").expect("Failed to create result file");
+    let mut file = File::create("/tmp/result.parquet").expect("Failed to create result file");
 
     let mut object = s3_client
         .get_object()
